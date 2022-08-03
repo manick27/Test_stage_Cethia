@@ -22,20 +22,32 @@ namespace Projet.Controllers
         }
 
         // GET: Produits
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Produit != null ? 
-                          View(await _context.Produit.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Produit'  is null.");
+            var produit = from p in _context.Produit
+                          select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                produit = produit.Where(s => s.Name!.Contains(searchString));
+            }
+
+            return View(await produit.ToListAsync());
         }
 
         // GET: Products by user
         [Authorize]
-        public async Task<IActionResult> Personnal()
+        public async Task<IActionResult> Personnal(string searchString)
         {
-            return _context.Produit != null ?
-                          View(await _context.Produit.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Produit'  is null.");
+            var produit = from p in _context.Produit
+                          select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                produit = produit.Where(s => s.Name!.Contains(searchString));
+            }
+
+            return View(await produit.ToListAsync());
         }
 
         // GET: Produits/Details/5
