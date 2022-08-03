@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Projet.Views.Home.Produit>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/img8.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Free Safe</h1>
+                            <span class="subheading">Sell freely everyday.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+<div id="container" style="padding-left: 100px;
+                           padding-right: 100px">
+<h1 style="text-align: center" class="display-4">
+    Welcome to our site, Here the list of products still present.
+</h1>
+<div style="">
+@foreach (var item in Model) {
+            if (item.Quantity > 0)
+    {
+        <div id="contain1" style="border: 1px solid black;
+                                  border-radius: 10px;
+                                  margin: auto;
+                                  width: fit-content;
+                                  height: auto;
+                                  display: inline-block;
+                                  padding: 5px;
+                                  margin: 30px;
+                                  background: lightgrey;
+                                  box-shadow: 5px 5px 25px grey">
+            <div id="image" style="width: fit-content">
+                @if(item.Id % 9 == 0){
+                    <img src="~/assets/img/img2.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 1){
+                    <img src="~/assets/img/img3.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 2){
+                    <img src="~/assets/img/img4.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 3){
+                    <img src="~/assets/img/img5.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 4){
+                    <img src="~/assets/img/img6.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 5){
+                    <img src="~/assets/img/img7.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 6){
+                    <img src="~/assets/img/img8.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 7){
+                    <img src="~/assets/img/img9.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }else if(item.Id % 9 == 8){
+                    <img src="~/assets/img/img10.jpg" class="img-fluid" width="250" height="150" style="border-radius: 10px">
+                }
+            </div>
+            <div id="info" style="border-top: 5px solid black">
+                @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Brand)
+                <dl style="display: flex;">
+                    <dt>
+                        State:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </dd>
+                    <button class="btn" style="margin-left: 20px; background: white">
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </button>
+                </dl>
+            </div>
+        </div>
+    }
+}
+    </tbody>
+</table>
+</div>
+</div>
